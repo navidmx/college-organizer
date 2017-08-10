@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Navid Mamoon</title>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Navid Mamoon">
+    <meta name="description" content="Navid Mamoon's Personal Website. Front-End Web Developer, Freelancer, and Entrepreneur.">
+    <meta name="keywords" content="Navid,Mamoon,Freelancer,HTML,CSS,JavaScript,PHP,SQL">
+    <!-- Libraries -->
+    <script src="https://use.fontawesome.com/102d004b3a.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:100,200,300">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <h1>College Organizer</h1>
+            </div>
+            <div class="col-md-2">
+                <button class="authenticate" onclick="signIn()"><i class="fa fa-google" aria-hidden="true"></i> SIGN IN</button>
+            </div>
+        </div>
+    </div>
+    <p id="not-signed-in">Sign in to being adding and storing schools!</p>
+    <div id="add-college">
+        <div class="row">
+            <div class="col-md-11">
+                <input type="text" id="name-selector" placeholder="Enter a college or university here...">
+            </div>
+            <div class="col-md-1">
+                <button id="search-college-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div id="searching-for-colleges">
+            <p>Searching for colleges that include "name"...</p>
+        </div>
+        <div class="row" id="search-results">
+            <div id="no-college-error">
+                <p>No colleges were found under that name. Try entering a more specific name, and avoid any acronyms.</p>
+                <p>For example, "New York University" instead of "NYU"</p>
+            </div>
+            <div id="college-selector-form">
+                <div class="col-md-8">
+                    <select id="college-selector">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="status-selector">
+                        <option value="5">Extra Reach</option>
+                        <option value="4">Reach</option>
+                        <option value="3">Middle/Reach</option>
+                        <option value="2" selected>Middle</option>
+                        <option value="1">Safety/Middle</option>
+                        <option value="0">Safety</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button id="add-college-button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-group" id="college-list">
+        <!--
+        Used for development purposes.
+        <div class="panel">
+            <a data-toggle="collapse" data-parent="#college-list" href="#college-a">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Massachusetts Institute of Technology</h4>
+                    <h5 style="color: #fdd500">Extra Reach</h5>
+                </div>
+            </a>
+            <div id="college-a" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p class="menu-item">Location</p>
+                            <p class="stat-item college-location">Cambridge, MA</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="menu-item">Admission Rate</p>
+                            <p class="stat-item">7.88%</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="menu-item">Average SAT/ACT</p>
+                            <p class="stat-item">1500/34</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="menu-item">Retention Rate</p>
+                            <p class="stat-item">98.65%</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="menu-item">Tuition Fee</p>
+                            <p class="stat-item">$45016</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="menu-item">Students with Loans</p>
+                            <p class="stat-item">56.76%</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="menu-item">Top Major Fields</p>
+                            <p class="stat-item college-majors">Engineering Technologies and Engineering-Related Fields</p>
+                            <p class="stat-item college-majors">Engineering Technologies and Engineering-Related Fields</p>
+                            <p class="stat-item college-majors">Engineering Technologies and Engineering-Related Fields</p>
+                        </div>
+                    </div>
+                    <div class="row menu-item">
+                        <div class="col-md-4"><a href="http://' + school.school.school_url + '" class="button" target="_newtab"><i class="fa fa-home" aria-hidden="true"></i> College Homepage</a></div>
+                        <div class="col-md-4"><a href="http://' + school.school.price_calculator_url + '" class="button" target="_newtab"><i class="fa fa-usd" aria-hidden="true"></i> Net Price Calculator</a></div>
+                        <div class="col-md-4"><a href="#" class="button remove-college" onclick="removeCollege(\'' + school.school.name + '\');return false;"><i class="fa fa-times" aria-hidden="true"></i> Remove College</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+    </div>
+    <p id="loading"></p>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js">
+
+
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/dictionary.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

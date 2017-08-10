@@ -1,0 +1,236 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #333333;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    color: #60d4ff;
+}
+
+h5 {
+    float: right;
+    margin-top: -43px;
+    font-size: 18px;
+    margin-right: 30px;
+}
+
+a {
+    color: white;
+    transition: color .5s;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+.col-md-2 {
+    display: inline-block;
+}
+
+#header {
+    border-bottom: 3px solid #60d4ff;
+    text-align: center;
+    padding: 10px;
+}
+
+#add-college {
+    padding: 20px 20px 10px 20px;
+    display: none;
+}
+
+#add-college input,
+#add-college select,
+#add-college button {
+    width: 100%;
+    padding: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 24px;
+    background-color: #272727;
+    border: 2px solid #444;
+    border-radius: 5px;
+    height: 50px;
+    transition: background-color .5s, border-color .5s;
+}
+
+#add-college input:focus,
+#add-college select:focus,
+#add-college button:focus {
+    outline: none;
+}
+
+#add-college select:hover,
+#add-college button:hover {
+    cursor: pointer;
+    background-color: #2f2f2f;
+}
+
+#search-results {
+    padding-top: 10px;
+    display: none;
+}
+
+#no-college-error {
+    color: #ff7f7f;
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+#searching-for-colleges {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 20px 0;
+    display: none;
+}
+
+#college-selector-form {
+    display: none;
+}
+
+#college-list .button {
+    width: 75%;
+    max-width: 300px;
+    background-color: #358dad;
+    margin: 20px 0;
+    border-radius: 10px;
+    padding: 15px;
+    transition: background-color, .5s;
+}
+
+#college-list .button:hover {
+    background-color: #3da8d0;
+}
+
+#loading {
+    font-size: 24px;
+    padding: 0 20px;
+}
+
+#sign-out {
+    display: none;
+}
+
+.authenticate {
+    float: right;
+    width: 130px;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #272727;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 3px;
+    transition: background-color .5s, border-color 1s;
+}
+
+.authenticate:hover {
+    cursor: pointer;
+    background-color: #2f2f2f;
+}
+
+@media(min-width: 991px) {
+    .authenticate {
+        margin-top: 22px;
+    }
+}
+
+@media(max-width: 655px) {
+    h5 {
+        display: none;
+    }
+}
+
+.menu-item {
+    padding: 20px 15px 10px 15px;
+    font-size: 18px;
+}
+
+.stat-item {
+    padding-bottom: 10px;
+    color: #60d4ff;
+    font-size: 36px;
+}
+
+.test-menu-item {
+    padding: 20px 15px 20px 15px;
+    font-size: 18px;
+}
+
+.test-stat-item {
+    padding-bottom: 10px;
+    color: #60d4ff;
+    font-size: 36px;
+}
+
+.remove-college {
+    background-color: #d02727 !important;
+}
+
+.college-buttons {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.college-buttons .col-md-4 {
+    padding: 20px 15px;
+}
+
+.college-info {
+    border-bottom: 3px solid #5c5c5c;
+}
+
+.college-location {
+    font-size: 24px;
+}
+
+.college-majors {
+    font-size: 24px;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.panel {
+    padding: 0;
+    display: none;
+    text-align: left;
+    background-color: #333;
+    border-bottom: 3px solid #444;
+}
+
+.panel-title {
+    font-size: 24px;
+    padding: 20px;
+    line-height: 35px;
+    transition: background-color .3s;
+}
+
+.panel-title:hover {
+    background-color: #353535;
+}
+
+.panel-body {
+    text-align: center;
+    font-size: 18px;
+    padding: 0px 20px;
+    background-color: #272727;
+    border-top: 0 !important;
+}
+
+.panel-heading {
+    padding: 0;
+}
+
+#not-signed-in {
+    font-size: 22px;
+    text-align: center;
+    padding-top: 20px;
+}
