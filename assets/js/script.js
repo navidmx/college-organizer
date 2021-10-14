@@ -152,20 +152,20 @@ function check() {
         $("#loading").text("You haven't added any colleges yet!");
     }
     if (i < colleges.length) {
-        uri = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + colleges[i].id + "&api_key=bzZKWtSlWh0UHMHpTBD85NoqEJvBQW5TKlwA8WHE";
+        uri = "https://api.data.gov/ed/collegescorecard/v1/schools?id=" + colleges[i].id + "&api_key=p67nDXE2OtmmttAdYKyF2TchpgTxz4JeMrdOXUJb";
         col = rank(colleges[i].rank);
         $.getJSON(encodeURI(uri), function (data) {
             console.log(data.results);
         }).done(function (data) {
             $("#loading").remove();
-            school = data.results[0];
-            topMajors = Object.keys(school[2014].academics.program_percentage).sort(function (a, b) {
-                return school[2014].academics.program_percentage[a] - school[2014].academics.program_percentage[b]
+            let school = data.results[0];
+            topMajors = Object.keys(school.latest.academics.program_percentage).sort(function (a, b) {
+                return school.latest.academics.program_percentage[a] - school.latest.academics.program_percentage[b]
             }).reverse().slice(0, 3);
             if (data.results.length == 0) {
                 $("#college-list").append('<div class="panel"><a data-toggle="collapse" data-parent="#college-list" href="#college-' + i + '"><div class="panel-heading"><h4 class="panel-title" style="color: #ff6969">Unknown School</h4><h5>Please try typing the full name of the school.</h5></div></a><div id="college-' + i + '" class="panel-collapse collapse"></div></div></div>');
             } else {
-                $("#college-list").append('<div class="panel"><a data-toggle="collapse" data-parent="#college-list" href="#college-' + i + '"><div class="panel-heading"><h4 class="panel-title">' + school.school.name + '</h4>' + col + '</div></a><div id="college-' + i + '" class="panel-collapse collapse"><div class="panel-body"><div class="row"><div class="col-md-2"><p class="menu-item">Location</p><p class="stat-item college-location">' + school.school.city + ', ' + school.school.state + '</p></div><div class="col-md-2"><p class="menu-item">Area</p><p class="stat-item college-location">' + area[school.school.locale] + '</p></div><div class="col-md-2"><p class="menu-item">Undergrad Count</p><p class="stat-item">' + school[2014].student.size + '</p></div><div class="col-md-2"><p class="menu-item">Admission Rate</p><p class="stat-item admission-rate">' + (school[2014].admissions.admission_rate.overall * 100).toFixed(2) + '%</p></div><div class="col-md-2"><p class="menu-item">Average SAT/ACT</p><p class="stat-item test-scores">' + school[2014].admissions.sat_scores.average.overall + '/' + school[2014].admissions.act_scores.midpoint.cumulative + '</p></div><div class="col-md-2"><p class="menu-item">Retention Rate</p><p class="stat-item retention-rate">' + (school[2014].student.retention_rate.four_year.full_time * 100).toFixed(2) + '%</p></div><div class="col-md-6"><p class="menu-item">Top Major Fields</p><p class="stat-item college-majors"><span style="color: white">1. </span>' + majors[topMajors[0]] + '</p><p class="stat-item college-majors"><span style="color: white">2. </span>' + majors[topMajors[1]] + '</p><p class="stat-item college-majors"><span style="color: white">3. </span>' + majors[topMajors[2]] + '</p></div>' + checkTuition(school[2014].cost.tuition.in_state, school[2014].cost.tuition.out_of_state) + '<div class="col-md-2"><p class="menu-item">Students with Loans</p><p class="stat-item loan-rate">' + (school[2014].aid.students_with_any_loan * 100).toFixed(2) + '%</p></div>' + checkReligion(school.school.religious_affiliation) + '</div><div class="row menu-item college-buttons"><div class="col-md-4"><a href="http://' + school.school.school_url + '" class="button" target="_newtab"><i class="fa fa-home" aria-hidden="true"></i> College Homepage</a></div><div class="col-md-4"><a href="http://' + school.school.price_calculator_url + '" class="button" target="_newtab"><i class="fa fa-usd" aria-hidden="true"></i> Net Price Calculator</a></div><div class="col-md-4"><a href="#" class="button remove-college" onclick="removeCollege(\'' + school.school.name + '\');return false;"><i class="fa fa-times" aria-hidden="true"></i> Remove College</a></div></div></div></div></div>');
+                $("#college-list").append('<div class="panel"><a data-toggle="collapse" data-parent="#college-list" href="#college-' + i + '"><div class="panel-heading"><h4 class="panel-title">' + school.school.name + '</h4>' + col + '</div></a><div id="college-' + i + '" class="panel-collapse collapse"><div class="panel-body"><div class="row"><div class="col-md-2"><p class="menu-item">Location</p><p class="stat-item college-location">' + school.school.city + ', ' + school.school.state + '</p></div><div class="col-md-2"><p class="menu-item">Area</p><p class="stat-item college-location">' + area[school.school.locale] + '</p></div><div class="col-md-2"><p class="menu-item">Undergrad Count</p><p class="stat-item">' + school.latest.student.size + '</p></div><div class="col-md-2"><p class="menu-item">Admission Rate</p><p class="stat-item admission-rate">' + (school.latest.admissions.admission_rate.overall * 100).toFixed(2) + '%</p></div><div class="col-md-2"><p class="menu-item">Average SAT/ACT</p><p class="stat-item test-scores">' + school.latest.admissions.sat_scores.average.overall + '/' + school.latest.admissions.act_scores.midpoint.cumulative + '</p></div><div class="col-md-2"><p class="menu-item">Retention Rate</p><p class="stat-item retention-rate">' + (school.latest.student.retention_rate.four_year.full_time * 100).toFixed(2) + '%</p></div><div class="col-md-6"><p class="menu-item">Top Major Fields</p><p class="stat-item college-majors"><span style="color: white">1. </span>' + majors[topMajors[0]] + '</p><p class="stat-item college-majors"><span style="color: white">2. </span>' + majors[topMajors[1]] + '</p><p class="stat-item college-majors"><span style="color: white">3. </span>' + majors[topMajors[2]] + '</p></div>' + checkTuition(school.latest.cost.tuition.in_state, school.latest.cost.tuition.out_of_state) + '<div class="col-md-2"><p class="menu-item">Students with Loans</p><p class="stat-item loan-rate">' + (school.latest.aid.students_with_any_loan * 100).toFixed(2) + '%</p></div>' + checkReligion(school.school.religious_affiliation) + '</div><div class="row menu-item college-buttons"><div class="col-md-4"><a href="http://' + school.school.school_url + '" class="button" target="_newtab"><i class="fa fa-home" aria-hidden="true"></i> College Homepage</a></div><div class="col-md-4"><a href="http://' + school.school.price_calculator_url + '" class="button" target="_newtab"><i class="fa fa-usd" aria-hidden="true"></i> Net Price Calculator</a></div><div class="col-md-4"><a href="#" class="button remove-college" onclick="removeCollege(\'' + school.school.name + '\');return false;"><i class="fa fa-times" aria-hidden="true"></i> Remove College</a></div></div></div></div></div>');
                 errorCheck(i);
             }
             $(".panel").fadeIn(1000);
@@ -185,11 +185,11 @@ function checkTuition(instate, outstate) {
     }
 }
 
-function checkReligion(num) {
-    if (num != -2) {
-        return '<div class="col-md-2"><p class="menu-item">Religious Affiliation</p><p class="stat-item college-location">' + religions[num] + '</p></div>';
+function checkReligion(religion) {
+    if (religion) {
+        return '<div class="col-md-2"><p class="menu-item">Religious Affiliation</p><p class="stat-item college-location">' + religions[religion] + '</p></div>';
     } else {
-        return "";
+        return `<div class="col-md-2"><p class="menu-item">Religious Affiliation</p><p class="stat-item college-location"><span style='color: #ff7f7f'>N/A</span></p></div>`;
     }
 }
 
